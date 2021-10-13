@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }}</title>
+  <meta name="description" content="{{ description }}">
+
+  {{-- Fonts --}}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" as="style">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+
+  {{-- Favicon and device icons --}}
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+
+  {{-- Alpine and turbo are not friends as of now and hence we need to disable turbo cache --}}
+  <meta name="turbo-cache-control" content="no-cache">
+
+  {{-- Compiled assets --}}
+  @entryPointStyles('app')
+  @entryPointScripts('app')
+</head>
+
+<body class="bg-gray-800 font-sans text-base antialiased text-gray-50" data-instant-allow-query-string>
+  @include('partials/header')
+  @include('partials/global-notification')
+
+  <div class="min-h-shell">
+    @!section('body')
+  </div>
+
+  <footer>
+    <div class="max-w-xl mx-auto border-t border-gray-300 text-sm">
+      <div class="flex items-center justify-between h-24">
+        <p>
+          <span>Made with</span>
+          <a href="https://adonisjs.com" class="font-medium underline">AdonisJS</a>
+          <span>by Bumpynuckz</span>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  {{-- A container for display modals --}}
+  <div id="modals-container"></div>
+</body>
+</html>

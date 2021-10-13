@@ -1,0 +1,48 @@
+@if(!auth.isLoggedIn)
+  <div class="flex items-center">
+    <div>
+      <a
+        href="{{ route('LoginController.create') }}"
+        class="button button-neutral"
+      >
+        Log In
+      </a>
+    </div>
+
+    <div class="ml-2">
+      <a
+        href="{{ route('SignupController.create') }}"
+        class="button button-primary"
+      >
+        Sign Up
+      </a>
+    </div>
+  </div>
+@else
+  <div class="relative" x-data="{ opened: false }">
+    <button @click.prevent="opened = !opened" @click.away="opened = false">
+      @!userAvatar({ user: auth.user })
+    </button>
+
+    <div class="dropdown" x-show="opened">
+      <ul>
+        <li>
+          <a href="/me" class="dropdown_item text-gray-500"> My profile </a>
+        </li>
+
+        <li>
+          {{-- Logout request should not use the GET method --}}
+          <form action="{{ route('LoginController.destroy') }}" method="POST" x-data="{}">
+            <a
+              href="{{ route('LoginController.destroy') }}"
+              class="dropdown_item text-gray-500"
+              @click.prevent="(event) => event.target.closest('form').submit()"
+            >
+              Logout
+            </a>
+          </form>
+        </li>
+      </ul>
+    </div>
+  </div>
+@end
