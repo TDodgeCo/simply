@@ -29,6 +29,36 @@ Route.where('id', Route.matchers.number())
 /**
  * Signup, login and logout routes
  */
+Route.get('/discord/callback', async ({ ally }) => {
+  const discord = ally.use('discord')
+
+  /**
+ * User has explicitly denied the login request
+ */
+  if (discord.accessDenied()) {
+    return 'Access was denied'
+  }
+
+  /**
+   * Unable to verify the CSRF state
+   */
+  if (discord.stateMisMatch()) {
+    return 'Request expired. Retry again'
+  }
+
+  /**
+   * There was an unknown error during the redirect
+   */
+  if (discord.hasError()) {
+    return discord.getError()
+  }
+
+  /**
+   * Finally, access the user
+   */
+  const user = await discord.user()
+})
+
 Route.get('signup', 'SignupController.create').middleware('guest')
 Route.post('signup', 'SignupController.store').middleware('guest')
 Route.get('login', 'LoginController.create').middleware('guest')
@@ -57,3 +87,8 @@ Route.post('polls', 'PollsController.store').middleware('auth')
 Route.get('polls/:slug', 'PollsController.show')
 Route.post('polls/:id/vote', 'PollsController.submitVote').middleware('auth')
 Route.delete('polls/:id', 'PollsController.destroy').middleware('auth')
+
+/**
+ * Events resource management. One should be logged-in to interact
+ * with events, except viewing a poll.
+ */

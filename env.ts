@@ -33,4 +33,6 @@ export default Env.rules({
   S3_BUCKET: Env.schema.string(),
   S3_REGION: Env.schema.string(),
   S3_ENDPOINT: Env.schema.string.optional(),
+  DISCORD_CLIENT_ID: Env.schema.string(),
+  DISCORD_CLIENT_SECRET: Env.schema.string(),
 })

@@ -1,9 +1,11 @@
+https://docs.adonisjs.com/guides/auth/social#config
+
 # Adonis Poll
 > A [majestic monolith](https://m.signalvnoise.com/the-majestic-monolith/) application built using AdonisJS
 
 The repo contains the source code for a demo application built using AdonisJS. Since, AdonisJS is a fully featured framework it contains everything you need to develop and deploy this application.
 
-The application is architectured as a [majestic monolith](https://m.signalvnoise.com/the-majestic-monolith-can-become-the-citadel/) and contains all the source code from **database to design**. 
+The application is architectured as a [majestic monolith](https://m.signalvnoise.com/the-majestic-monolith-can-become-the-citadel/) and contains all the source code from **database to design**.
 
 - It uses [AdonisJS](http://adonisjs.com/) as a backend framework to manage the routing, database and the templates layer.
 - It uses [TailwindCSS](https://tailwindcss.com/) for design.
@@ -22,21 +24,21 @@ The codebase serves two main purposes.
 - Learn how to validate the user input using [Request validators](./app/Validators).
 - Work with [file uploads](./app/Controllers/Http/ProfileController.ts#55-60) (including validations) and AdonisJS drive.
 - Using the Edge template engine and its [components layer](./resources/views/components).
-- Using Lucid [schema migrations](./database/migrations) for creating/alterting database tables. 
+- Using Lucid [schema migrations](./database/migrations) for creating/alterting database tables.
 - Using Hotwire for faster page navigation.
 - Using Alpine.js for dialog modals, toggling notifications and interactive dropdowns.
 
 ## FAQs
 
 #### When to use edge components?
-I create edge components when I want to abstract some functionality or logic. 
+I create edge components when I want to abstract some functionality or logic.
 
 For example: I have created a component for showing toast notifications. This allows we keep the markup (including icons) and its auto hide logic in one place.
 
 Whereas, I do not created components for stuff like buttons. Instead, I just create CSS classes like `button-primary`, `button-secondary` and so on.
 
 I know these are subjective topics. But I do not create components for something that CSS can achieve easily.
- 
+
 #### Why not create an SPA using Vue or React?
 Since, this is a public app creating a pure SPA will suffer from SEO. Instead, I will have to create a server rendered Vue or React app.
 
